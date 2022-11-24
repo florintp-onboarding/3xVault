@@ -41,6 +41,8 @@ Environment="VAULT_LICENSE_PATH=/home/ubuntu/_vaultSetup/license.hclic"
 WantedBy=multi-user.target
 EOF
 
+echo "SystemD applied..."|sudo tee -a /home/ubuntu/_vaultSetup/vault_debug
+
 sudo systemctl daemon-reload
 
 sudo systemctl stop vault

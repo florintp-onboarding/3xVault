@@ -12,3 +12,12 @@ variable "userinfra" {
   type  = string
   description = "User prefixing the infrastructure"
 }
+
+variable "myip" {
+  type  = string
+  description = "MYIP fpr securing access to SSH"
+}
+variable "mytimezone" {
+  type  = string
+  description = "TIMEZONE for infrastructure"
+}

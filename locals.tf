@@ -1,4 +1,8 @@
 locals {
+  # Assign a local variable for SSH access to EC2 nodes
+  myip = var.myip
+  # Assign a local variable ustomized TIMEZONE
+  mytimezone = var.mytimezone
   # Deployment is using the random_pet for tagging resourcres
   random_id = random_pet.env.id
   # Putting the CA cert in a local variable

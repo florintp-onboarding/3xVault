@@ -1,3 +1,13 @@
+variable "mytimezone" {
+  type         = string
+  description  = "Variable used for TIMEZONE information"
+}
+
+variable "myip" {
+  type         = string
+  description  = "Variable used for limiting the INGRESS/SSH access"
+}
+
 variable "random_id" {
   type        = string
   description = "Variable used as unique identifier of the current environment"
