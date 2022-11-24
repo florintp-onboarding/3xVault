@@ -1,3 +1,13 @@
+variable "myip" {
+  type        = string
+  description = "The IP for which the INGRESS/SSH access will be permitted"
+}
+
+variable "mytimezone" {
+  type        = string
+  description = "The TIMEZONE Information"
+}
+
 variable "vpc_cidr" {
   description = "CIDR of the VPC"
 }

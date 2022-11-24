@@ -5,11 +5,13 @@ data "cloudinit_config" "myhost" {
   gzip          = true
   base64_encode = true
   # This part is for setting hostname adds Hashicorp repo and installs Vault
+  # In order to change the TIMEZONE timedatectl list-timezones 
   part {
     content_type = "text/cloud-config"
     content = templatefile("${path.module}/../templates/cloud_init_templates/cloud-config.yml", {
       hostname      = "vault-${var.region}-${each.key}-${var.random_id}",
-      timezone      = "Europe/Sofia" # Non configurable for now,
+      #timezone      = "Europe/Amsterdam" # Non configurable for now,
+      timezone      = "${var.mytimezone}"
       vault_version = var.vault_version
     })
   }

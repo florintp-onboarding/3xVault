@@ -6,6 +6,8 @@ module "vault-cluster-us" {
   vault_common_ca_cert        = local.vault_common_ca_cert
   vault_common_ca_private_key = local.vault_common_ca_private_key
   random_id                   = local.random_id
+  myip                        = local.myip
+  mytimezone                  = local.mytimezone
   vault_license               = local.vault_license
 
   region        = var.clusters.us.region
@@ -22,6 +24,8 @@ module "vault-cluster-eu" {
   vault_common_ca_cert        = local.vault_common_ca_cert
   vault_common_ca_private_key = local.vault_common_ca_private_key
   random_id                   = local.random_id
+  myip                        = local.myip
+  mytimezone                  = local.mytimezone
   vault_license               = local.vault_license
 
   region        = var.clusters.eu.region
@@ -37,6 +41,8 @@ module "vault-cluster-ap" {
   vault_common_ca_cert        = local.vault_common_ca_cert
   vault_common_ca_private_key = local.vault_common_ca_private_key
   random_id                   = local.random_id
+  myip                        = local.myip
+  mytimezone                   = local.mytimezone
   vault_license               = local.vault_license
 
   region        = var.clusters.ap.region

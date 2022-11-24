@@ -12,7 +12,9 @@ resource "aws_security_group" "vault" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.myip}"]
+  # cidr_blocks = ["143.178.71.148/32"]
+  #  cidr_blocks = ["0.0.0.0/0"]
   }
 
   # Vault Client Traffic
@@ -41,12 +43,28 @@ resource "aws_security_group" "vault" {
     self      = true
   }
 
+  # All UDP connections are allowed if they are located in the same SG
+  ingress {
+    from_port = 0
+    to_port   = 65535
+    protocol  = "udp"
+    self      = true
+  }
+
   # All ICMP connections are allowed if they are located in the same SG
   ingress {
     from_port = 0
     to_port   = 254
     protocol  = "icmp"
     self      = true
+  }
+
+  # Allow ICMP Echo and Replya if they are having MYIP as source
+  ingress {
+    from_port = 8
+    to_port   = 0
+    protocol  = "icmp"
+    cidr_blocks  = ["${var.myip}"]
   }
 
   # Leaving traffic
