@@ -1,4 +1,5 @@
 resource "random_pet" "env" {
-  length    = 2
+  length    = 1
   separator = "-"
+  prefix = var.userinfra
 }
