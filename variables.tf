@@ -7,3 +7,8 @@ variable "clusters" {
 
   description = "Defines all Vault clusters, map of custom objects"
 }
+
+variable "userinfra" {
+  type  = string
+  description = "User prefixing the infrastructure"
+}
