@@ -9,7 +9,7 @@ data "cloudinit_config" "myhost" {
   part {
     content_type = "text/cloud-config"
     content = templatefile("${path.module}/../templates/cloud_init_templates/cloud-config.yml", {
-      hostname      = "vault-${var.region}-${each.key}-${var.random_id}",
+      hostname = "vault-${var.region}-${each.key}-${var.random_id}",
       #timezone      = "Europe/Amsterdam" # Non configurable for now,
       timezone      = "${var.mytimezone}"
       vault_version = var.vault_version
@@ -37,8 +37,8 @@ data "cloudinit_config" "myhost" {
     content = templatefile("${path.module}/../templates/vault_config/tls_cert_and_license.yml.tmpl", {
       vault_tls_cert        = base64encode(tls_locally_signed_cert.vault_cert_sign[each.key].cert_pem)
       vault_tls_private_key = base64encode(tls_private_key.vault_tls_rsa_key[each.key].private_key_pem)
-      vault_license = var.vault_license
-      vault_license_legacy = var.vault_license
+      vault_license         = var.vault_license
+      vault_license_legacy  = var.vault_license
     })
   }
   # Using cc_cert to add the self-signed Vault CA
@@ -53,7 +53,7 @@ data "cloudinit_config" "myhost" {
     content_type = "text/x-shellscript"
     content = each.key == local.first_subnet_host ? templatefile("${path.module}/../templates/vault_config/init_license.yml.tmpl", {
       vault_license = var.vault_license
-      }) : file("${path.module}/../templates/vault_config/join_license.yml.tmpl")
+    }) : file("${path.module}/../templates/vault_config/join_license.yml.tmpl")
   }
   # Provides host keys for the EC2
   part {

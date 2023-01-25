@@ -13,8 +13,8 @@ resource "aws_security_group" "vault" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["${var.myip}"]
-  # cidr_blocks = ["143.178.71.148/32"]
-  #  cidr_blocks = ["0.0.0.0/0"]
+    # cidr_blocks = ["143.178.71.148/32"]
+    #  cidr_blocks = ["0.0.0.0/0"]
   }
 
   # Vault Client Traffic
@@ -61,10 +61,10 @@ resource "aws_security_group" "vault" {
 
   # Allow ICMP Echo and Replya if they are having MYIP as source
   ingress {
-    from_port = 8
-    to_port   = 0
-    protocol  = "icmp"
-    cidr_blocks  = ["${var.myip}"]
+    from_port   = 8
+    to_port     = 0
+    protocol    = "icmp"
+    cidr_blocks = ["${var.myip}"]
   }
 
   # Leaving traffic

@@ -9,15 +9,15 @@ variable "clusters" {
 }
 
 variable "userinfra" {
-  type  = string
+  type        = string
   description = "User prefixing the infrastructure"
 }
 
 variable "myip" {
-  type  = string
+  type        = string
   description = "MYIP fpr securing access to SSH"
 }
 variable "mytimezone" {
-  type  = string
+  type        = string
   description = "TIMEZONE for infrastructure"
 }

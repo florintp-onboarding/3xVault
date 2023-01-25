@@ -7,11 +7,11 @@ module "vault-cluster-us" {
   source = "../sub-modules/vault_cluster"
 
   #Variables
-  vpc_cidr  = var.vpc_cidr
-  random_id = var.random_id
-  region    = var.region
-  myip      = var.myip
-  mytimezone= var.mytimezone
+  vpc_cidr   = var.vpc_cidr
+  random_id  = var.random_id
+  region     = var.region
+  myip       = var.myip
+  mytimezone = var.mytimezone
 
   vault_common_ca_cert        = var.vault_common_ca_cert
   vault_common_ca_private_key = var.vault_common_ca_private_key

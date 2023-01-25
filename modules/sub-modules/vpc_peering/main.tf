@@ -38,7 +38,7 @@ resource "aws_vpc_peering_connection_accepter" "peer_dr" {
 #
 #  depends_on = [aws_vpc_peering_connection_accepter.peer_dr]
 #}
-#
+
 ## Setting options for the VPC peering acceptor side (DR)
 #resource "aws_vpc_peering_connection_options" "options_dr_acceptor" {
 #  provider = aws.dr_provider
@@ -92,7 +92,7 @@ resource "aws_vpc_peering_connection_accepter" "peer_pr" {
 #
 #  depends_on = [aws_vpc_peering_connection_accepter.peer_pr]
 #}
-#
+
 ## Setting options for the VPC peering acceptor side (DR)
 #resource "aws_vpc_peering_connection_options" "options_pr_acceptor" {
 #  provider = aws.dr_provider
@@ -105,3 +105,31 @@ resource "aws_vpc_peering_connection_accepter" "peer_pr" {
 #
 #  depends_on = [aws_vpc_peering_connection_accepter.peer_pr]
 #}
+
+######
+# Initiating the VPC peering from the HQ region to the DR region
+resource "aws_vpc_peering_connection" "peering_source_to_dr_ad1" {
+
+  provider = aws.hq_provider
+
+  vpc_id      = element(tolist(data.aws_vpcs.vpc_id_hq_region.ids), 0)
+  peer_vpc_id = element(tolist(data.aws_vpcs.vpc_id_dr_region.ids), 0)
+  peer_region = local.dr_vault_region
+  auto_accept = false
+
+  tags = {
+    Name = "vault-${local.hq_vault_region}-${var.random_id}"
+  }
+}
+
+# Accepting the VPC peering request from the HQ side
+resource "aws_vpc_peering_connection_accepter" "peer_hq" {
+  provider = aws.dr_provider
+
+  vpc_peering_connection_id = aws_vpc_peering_connection.peering_source_to_dr_ad1.id
+  auto_accept               = true
+
+  tags = {
+    Name = "vault-${local.hq_vault_region}-${var.random_id}-ad1"
+  }
+}

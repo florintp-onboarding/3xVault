@@ -1,11 +1,11 @@
 variable "mytimezone" {
-  type         = string
-  description  = "Variable used for TIMEZONE information"
+  type        = string
+  description = "Variable used for TIMEZONE information"
 }
 
 variable "myip" {
-  type         = string
-  description  = "Variable used for limiting the INGRESS/SSH access"
+  type        = string
+  description = "Variable used for limiting the INGRESS/SSH access"
 }
 
 variable "random_id" {
