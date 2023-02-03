@@ -18,6 +18,7 @@ module "vault-cluster-us" {
 
   vault_license = var.vault_license
   vault_version = var.vault_version
+  vault_ec2_type = var.vault_ec2_type
 
   providers = {
     aws = aws.us-provider

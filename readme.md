@@ -130,13 +130,14 @@
   - [ ] Create usage GIF with peek
   - [x] Provide ability to enable Raft auto-snapshot feature
   - [x] Provide configurable Vault version for each cluster
+  - [x] Add ability to select EC2 sizes
 ### Example `terraform.tfvars` :
 
   ```
   clusters = {
-    "us" = { region = "us-east-2", vpc_cidr = "192.168.0.0/24", vault_version = "1.10.3-1+ent" },
-    "ap" = { region = "ap-south-1", vpc_cidr = "192.168.100.0/24", vault_version = "1.10.1-1+ent" },
-    "eu" = { region = "eu-west-1", vpc_cidr = "192.168.200.0/24", vault_version = "1.10.1-1+ent" }
+    "us" = { region = "us-east-2", vpc_cidr = "192.168.0.0/24", vault_version = "1.10.3-1+ent", vault_ec2_type = "small" },
+    "ap" = { region = "ap-south-1", vpc_cidr = "192.168.100.0/24", vault_version = "1.10.1-1+ent", vault_ec2_type  = "small" },
+    "eu" = { region = "eu-west-1", vpc_cidr = "192.168.200.0/24", vault_version = "1.10.1-1+ent", vault_ec2_type = "small" }
   }
 
   # For all versions of "vault-enterprise" package, run "apt list -a vault-enterprise" after installing the Hashicorp repo
