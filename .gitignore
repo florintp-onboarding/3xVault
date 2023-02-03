@@ -8,3 +8,4 @@ trash/
 crash.log
 .terraform
 .terraform.*
+.plan
