@@ -16,7 +16,7 @@ variable "userinfra" {
 
 variable "myip" {
   type        = string
-  description = "MYIP fpr securing access to SSH"
+  description = "MYIP for securing access to SSH"
 }
 
 variable "mytimezone" {
