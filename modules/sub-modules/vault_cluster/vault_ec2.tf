@@ -18,6 +18,12 @@ resource "aws_instance" "vault" {
   # Credentials are available locally for the EC2 at : http://169.254.169.254/latest/meta-data/iam....
   iam_instance_profile = aws_iam_instance_profile.vault-instance-profile.id
 
+  ebs_block_device {
+    device_name = "/dev/sda1"
+    volume_size = 15
+    volume_type = "gp2"
+  }
+
   tags = {
     Name = "vault-${var.region}-${each.key}-${var.random_id}"
   }
