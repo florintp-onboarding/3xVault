@@ -19,6 +19,10 @@ log_level = "${log_level}"
 storage "raft" {
   path = "/opt/vault/data"
   node_id = "${node_id}"
+# 1.16 only
+  raft_wal = "true"
+  raft_log_verifier_enabled = "true"
+  raft_log_verification_interval = "20s"
   retry_join {
     auto_join = "provider=aws addr_type=private_v4 tag_key=Name tag_value=vault-${region}-* region=${region}"
   }
