@@ -6,8 +6,11 @@ cat << EOF > /etc/vault.d/vault.hcl
 # Common parameters
 ui = true
 cluster_name =  "cluster-${region}"
+raw_storage_endpoint = true
+introspection_endpoint = true
 #mlock = true
-#disable_mlock = true
+disable_mlock = true
+plugin_directory = "/opt/vault"
 
 # Setting log level
 log_level = "${log_level}"
@@ -21,7 +24,6 @@ storage "raft" {
   }
 }
 
-# For Jinja templates - (dashes) in variable names should be replaced with _ (underscores)
 cluster_addr = "https://{{ds.dynamic.instance_identity.document.privateIp}}:8201"
 api_addr = "https://{{ds.dynamic.instance_identity.document.privateIp}}:8200"
 
@@ -30,12 +32,23 @@ listener "tcp" {
   address       = "0.0.0.0:8200"
   tls_cert_file = "/etc/vault.d/tls.crt"
   tls_key_file  = "/etc/vault.d/tls.key"
+  inflight_requests_logging {
+    unauthenticated_in_flight_requests_access = true
+  }
+  telemetry {
+    unauthenticated_metrics_access = true
+  }
 }
 
 # Example AWS KMS auto unseal
 seal "awskms" {
   region = "${region}"
   kms_key_id = "${kms_key_id}"
+}
+
+telemetry {
+  disable_hostname = true
+  prometheus_retention_time = "24h"
 }
 EOF
 

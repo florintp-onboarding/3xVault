@@ -23,7 +23,7 @@ variable "region" {
 }
 
 variable "log_level" {
-  default     = "DEBUG"
+  default     = "TRACE"
   description = "Sets Vault log level"
 }
 
