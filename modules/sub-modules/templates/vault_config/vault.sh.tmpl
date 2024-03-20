@@ -15,6 +15,15 @@ plugin_directory = "/opt/vault"
 # Setting log level
 log_level = "${log_level}"
 
+# Setting the introspection paramter
+# https://developer.hashicorp.com/vault/docs/configuration#introspection_endpoint
+introspection_endpoint = true
+
+# Setting the deadlock detection
+# https://developer.hashicorp.com/vault/docs/configuration#detect_deadlocks
+# values can be statelock, quotas and expiration
+detect_deadlocks = "statelock, quotas, expiration"
+
 # Storage Raft stanza
 storage "raft" {
   path = "/opt/vault/data"
